@@ -1,0 +1,9 @@
+# Ignora os módulos do Node
+node_modules/
+
+# Ignora pastas de cache pesadas do WhatsApp
+.wwebjs_cache/
+.wwebjs_auth/session/Default/Cache/
+.wwebjs_auth/session/Default/Code Cache/
+.wwebjs_auth/session/Default/Service Worker/CacheStorage/
+.wwebjs_auth/session/Default/Service Worker/ScriptCache/
