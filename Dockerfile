@@ -1,39 +1,52 @@
-# 1. Usa uma imagem oficial do Python estável
-FROM python:3.11-slim
+# Use uma imagem estável com Python e Linux atualizados
+FROM python:3.11-slim-bookworm
 
-# 2. Instala o Node.js, NPM e as dependências que o Chromium do WhatsApp exige no Linux
+# Evita que o Python grave arquivos .pyc e força saída em tempo real nos logs
+ENV PYTHONUNBUFFERED=1
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Instala dependências do sistema, Chromium e configura o repositório moderno do Node.js (v18)
 RUN apt-get update && apt-get install -y \
     curl \
     gnupg \
+    libgconf-2-4 \
+    libatk1.0-0 \
+    libatk-bridge2.0-0 \
+    libgdk-pixbuf2.0-0 \
+    libgtk-3-0 \
     libgbm-dev \
-    wget \
+    libnss3 \
+    libxss1 \
+    libasound2 \
     chromium \
-    nss \
-    freetype \
-    harfbuzz \
-    ca-certificates \
-    ttf-freefont \
-    && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
-    && apt-get install -y nodejs \
+    fonts-ipafont-gothic \
+    fonts-wqy-zenhei \
+    fonts-thai-tlwg \
+    fonts-kacst \
+    fonts-freefont-ttf \
+    --no-install-recommends \
+    && mkdir -p /etc/apt/keyrings \
+    && curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg \
+    && echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_18.x nodistro main" | tee /etc/apt/sources.list.p/nodesource.list \
+    && apt-get update && apt-get install -y nodejs \
     && rm -rf /var/lib/apt/lists/*
 
-# 3. Define a pasta de trabalho dentro do servidor
+# Cria o diretório de trabalho dentro do container
 WORKDIR /app
 
-# 4. Copia os arquivos de dependências primeiro (para cache do Docker)
+# Copia os arquivos de configuração de pacotes primeiro (otimiza o cache do Render)
 COPY package*.json ./
 COPY requirements.txt ./
 
-# 5. Instala as dependências do Node e do Python
+# Instala as dependências do Node e do Python
 RUN npm install
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 6. Copia o restante dos códigos (bot.js, main.py, etc)
+# Copia o restante dos arquivos do projeto (incluindo a pasta .wwebjs_auth)
 COPY . .
 
-# 7. Define variáveis de ambiente para o Puppeteer encontrar o Chromium do Linux
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
-ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+# Expõe a porta que o FastAPI usa
+EXPOSE 10000
 
-# 8. Comando que inicia o FastAPI e o Bot do WhatsApp LADO A LADO no servidor
-CMD uvicorn main:app --host 0.0.0.0 --port $PORT & node bot.js
+# Comando para rodar a API em Python e o Bot em Node.js juntos em segundo plano
+CMD node bot.js & uvicorn main:app --host 0.0.0.0 --port 10000
