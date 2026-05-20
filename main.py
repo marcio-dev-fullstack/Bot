@@ -3,14 +3,14 @@ from fastapi.responses import HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 import os
 
-# Inicialização do app FastAPI
+# Inicialização do app FastAPI com metadados do M GRUPO
 app = FastAPI(
     title="M GRUPO - API Central de Monitoramento",
     description="Backend de controle concorrente para monitoramento de rotas e integração com assistente virtual.",
     version="1.0.0"
 )
 
-# Configuração de CORS para permitir requisições de qualquer origem, se necessário
+# Configuração de CORS para permitir requisições de qualquer origem
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -28,12 +28,12 @@ async def root():
         "servicos": ["KM Projetos", "RAZGO Tecnologia", "MAZZ Cursos", "MR Treinamentos"]
     }
 
-# 🔥 ROTA EXCLUSIVA /QR PARA ACESSAR E ESCANEAR O WHATSAPP
+# 🚀 ROTA EXCLUSIVA /QR PARA GERAR E EXIBIR O CODIGO DO WHATSAPP COM SEGURANÇA
 @app.get("/qr", response_class=HTMLResponse)
 async def get_qr_code():
     caminho_arquivo = "qrcode_atual.txt"
     
-    # Caso o arquivo de texto com o token do QR Code ainda não exista
+    # Caso o arquivo de texto com o token do QR Code ainda não exista no servidor
     if not os.path.exists(caminho_arquivo):
         return """
         <!DOCTYPE html>
@@ -49,33 +49,30 @@ async def get_qr_code():
                     h2 { color: #222; margin-bottom: 5px; }
                 </style>
                 <script>
-                    // Tenta recarregar a página a cada 5 segundos até encontrar o QR Code
-                    setTimeout(function() { location.reload(); }, 5000);
+                    // Tenta recarregar a página a cada 4 segundos até o bot.js gerar o token
+                    setTimeout(function() { location.reload(); }, 4000);
                 </script>
             </head>
             <body>
                 <div class="container">
                     <h2>M GRUPO</h2>
-                    <p style="color: #009688; font-weight: 600;">Inicializando o assistente virtual...</p>
+                    <p style="color: #009688; font-weight: 600;">Aguardando o robô gerar o código...</p>
                     <div class="spinner"></div>
-                    <p style="color: #666; font-size: 14px;">A gerar o código de emparelhamento no servidor. Esta página vai atualizar automaticamente em instantes.</p>
+                    <p style="color: #666; font-size: 14px;">Esta página vai atualizar sozinha assim que o bot disponibilizar o token de conexão no servidor.</p>
                 </div>
             </body>
         </html>
         """
         
-    # Lê o token do QR Code gerado pelo bot.js
+    # Lê o token bruto do QR Code gerado pelo bot.js
     with open(caminho_arquivo, "r") as f:
         qr_data = f.read().strip()
         
-    # Se o arquivo existir mas estiver vazio, aguarda a escrita do token
+    # Se o arquivo existir mas estiver temporariamente vazio
     if not qr_data:
-        return """
-        <script>setTimeout(function() { location.reload(); }, 2000);</script>
-        <p>A carregar dados do QR Code...</p>
-        """
+        return "<script>setTimeout(function() { location.reload(); }, 2000);</script><p>A carregar dados do token...</p>"
         
-    # Renderiza a página oficial com o gerador dinâmico do qrcode.show
+    # Retorna o HTML injetando a biblioteca qrcode.js diretamente via CDN para desenhar o QR de forma nativa
     return f"""
     <!DOCTYPE html>
     <html>
@@ -87,14 +84,11 @@ async def get_qr_code():
                 .container {{ background: white; padding: 40px; display: inline-block; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); max-width: 500px; }}
                 h2 {{ color: #111; margin-bottom: 2px; letter-spacing: 0.5px; }}
                 h3 {{ color: #009688; margin-top: 0; margin-bottom: 25px; font-weight: 500; font-size: 16px; }}
-                img {{ border: 1px solid #e1e4e8; padding: 12px; border-radius: 12px; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }}
+                #qrcode {{ background: #fff; padding: 15px; display: inline-block; border: 1px solid #e1e4e8; border-radius: 12px; margin: 20px auto; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }}
                 p {{ color: #444; font-size: 15px; line-height: 1.5; }}
                 .alert {{ background: #e0f2f1; color: #00796b; padding: 10px; border-radius: 8px; font-size: 13px; font-weight: bold; margin-bottom: 20px; }}
             </style>
-            <script>
-                // O código do WhatsApp Web expira a cada 20 segundos. Atualiza para garantir sincronia.
-                setTimeout(function() {{ location.reload(); }}, 20000);
-            </script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
         </head>
         <body>
             <div class="container">
@@ -103,12 +97,27 @@ async def get_qr_code():
                 
                 <div class="alert">Aparelho pronto para emparelhamento</div>
                 
-                <p>Abra o WhatsApp no seu telemóvel, aceda a <b>Aparelhos Conectados</b>, clique em <b>Conectar um aparelho</b> e aponte a câmara para o código abaixo:</p>
-                <br>
-                <img src="https://qrcode.show/{qr_data}" alt="WhatsApp QR Code" width="280" height="280">
-                <br>
-                <p style="color: #777; font-size: 12px; margin-top: 25px;">Esta página renova o ecrã automaticamente para evitar códigos expirados.</p>
+                <p>Abra o WhatsApp no seu telemóvel, aceda a <b>Aparelhos Conectados</b>, clique em <b>Conectar um aparelho</b> e escaneie o código abaixo:</p>
+                
+                <div id="qrcode"></div>
+                
+                <p style="color: #777; font-size: 12px; margin-top: 25px;">A página se auto-renovará para evitar códigos expirados.</p>
             </div>
+            
+            <script>
+                // Instancia o gerador nativo passando o token extraído do arquivo
+                new QRCode(document.getElementById("qrcode"), {{
+                    text: "{qr_data}",
+                    width: 260,
+                    height: 260,
+                    colorDark : "#000000",
+                    colorLight : "#ffffff",
+                    correctLevel : QRCode.CorrectLevel.H
+                }});
+                
+                // Força a atualização do ecrã a cada 20 segundos para sincronizar novos tokens do bot.js
+                setTimeout(function() {{ location.reload(); }}, 20000);
+            </script>
         </body>
     </html>
     """
