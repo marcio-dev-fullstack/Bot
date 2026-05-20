@@ -70,6 +70,7 @@ garantindo o máximo aproveitamento dos recursos em nuvem:
 
 O M GRUPO atua com excelência e rigor técnico entregando soluções completas nas áreas de:
 • Engenharias
+• Educação
 • Desenvolvimento de tecnologias inovadoras
 
 ---
