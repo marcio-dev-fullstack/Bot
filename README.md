@@ -68,10 +68,6 @@ garantindo o máximo aproveitamento dos recursos em nuvem:
 
 ```
 
-Aqui está uma versão do seu README totalmente reformulada, Márcio. Ajustei a formatação para torná-lo muito mais **escaneável, profissional e direto ao ponto**, utilizando caixas de destaque para os comandos e organizando as etapas do Docker de forma visualmente limpa:
-
----
-
 # M GRUPO
 
 O **M GRUPO** atua com excelência e rigor técnico entregando soluções completas nas áreas de:
