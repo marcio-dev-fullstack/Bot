@@ -22,7 +22,8 @@ Conjunto de microsserviços corporativos que integra uma API de monitoramento em
 
 ## Lógica de Atendimento (Anti-Spam)
 
-O assistente virtual monitora as mensagens recebidas e, ao detectar um gatilho válido, realiza um sorteio algorítmico entre **10 variações de textos comerciais em primeira pessoa ("Eu")**. Essa abordagem humaniza o fluxo e previne bloqueios na plataforma.
+O assistente virtual monitora as mensagens recebidas e, ao detectar um gatilho válido, realiza um sorteio algorítmico 
+entre **10 variações de textos comerciais em primeira pessoa ("Eu")**. Essa abordagem humaniza o fluxo e previne bloqueios na plataforma.
 
 ### Palavras-Chave Rastreadas
 Escolha as suas
@@ -35,7 +36,8 @@ M GRUPO
 
 ## Arquitetura Híbrida do Projeto
 
-O sistema opera através de uma arquitetura paralela e otimizada (Lado a Lado) embarcada em um container Docker, garantindo o máximo aproveitamento dos recursos em nuvem:
+O sistema opera através de uma arquitetura paralela e otimizada (Lado a Lado) embarcada em um container Docker,
+garantindo o máximo aproveitamento dos recursos em nuvem:
 
 
 ```
