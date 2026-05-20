@@ -142,17 +142,7 @@ O blueprint de build executa as seguintes etapas sequenciais na nuvem:
 
 ## Créditos e Desenvolvimento
 
-**Desenvolvido e Gerenciado por Márcio Rodrigues de Oliveira** *Engenheiro de Software | Engenheiro Civil | Engenheiro de Segurança do Trabalho*
+**Desenvolvido e Gerenciado por Márcio Rodrigues de Oliveira** 
+*Engenheiro de Software | Engenheiro Civil | Engenheiro de Segurança do Trabalho*
 
 ```
-
-### Como atualizar o seu portfólio agora:
-Abra o terminal do seu VS Code e execute o comando agrupado abaixo para atualizar o repositório no GitHub de forma limpa:
-
-```bash
-git add README.md && git commit -m "Docs: README.md completamente estilizado em Markdown" && git push origin main --force
-
-```
-
-• Cursos profissionalizantes de alta performance
-• Suporte especializado na área acadêmica (orientação de estágios e TCC).
