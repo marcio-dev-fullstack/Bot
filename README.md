@@ -143,6 +143,7 @@ O blueprint de build executa as seguintes etapas sequenciais na nuvem:
 ## Créditos e Desenvolvimento
 
 **Desenvolvido e Gerenciado por Márcio Rodrigues de Oliveira** 
+
 *Engenheiro de Software | Engenheiro Civil | Engenheiro de Segurança do Trabalho*
 
 ```
