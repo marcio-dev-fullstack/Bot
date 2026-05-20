@@ -79,5 +79,85 @@ O sistema opera através de uma arquitetura paralela e otimizada (Lado a Lado) e
 O M GRUPO atua com excelência e rigor técnico entregando soluções completas nas áreas de:
 • Engenharias
 • Desenvolvimento de tecnologias inovadoras
+
+---
+
+## Instalação e Execução Local
+
+### 1. Clonar o Repositório
+
+```bash
+git clone [https://github.com/marcio-dev-fullstack/Bot.git](https://github.com/marcio-dev-fullstack/Bot.git)
+cd Bot
+
+```
+
+### 2. Configurar Dependências do Node.js
+
+```bash
+npm install
+
+```
+
+### 3. Configurar Dependências do Python
+
+```bash
+pip install -r requirements.txt
+
+```
+
+### 4. Executar o Assistente Localmente (Gerando Sessão)
+
+```bash
+node bot.js
+
+```
+
+> *Escaneie o QR Code gerado diretamente no terminal do seu VS Code para validar o acesso do aparelho corporativo.*
+
+### 5. Executar a API Localmente
+
+```bash
+uvicorn main:app --reload
+
+```
+
+---
+
+## Produção e Deploy no Render
+
+O deploy é gerenciado de forma automatizada via Dockerfile. Graças ao filtro configurado no `.gitignore`, os dados pesados de cache do navegador local são descartados, enviando para o servidor apenas o token criptografado essencial de autenticação (`.wwebjs_auth`).
+
+### Automação do Dockerfile
+
+O blueprint de build executa as seguintes etapas sequenciais na nuvem:
+
+1. Provisiona ambiente oficial `Python 3.11 Slim`.
+2. Injeta dependências estáveis do Chromium moderno (`Debian Trixie`).
+3. Instala a runtime do `Node.js v18` de forma isolada.
+4. Instala os pacotes de dependências via `NPM` e Python `PIP`.
+5. Sincroniza o token de sessão local estável.
+6. Inicializa os serviços concorrentes rodando o FastAPI e o Bot lado a lado.
+
+> *Para monitorar a saúde do sistema na nuvem ou checar o status da aplicação, acesse o painel principal na URL de produção configurada no Render.*
+
+---
+
+## 👨‍💻 Créditos e Desenvolvimento
+
+**Desenvolvido e Gerenciado por Márcio Rodrigues de Oliveira** *Engenheiro de Software | Engenheiro Civil | Engenheiro de Segurança do Trabalho*
+
+```
+
+---
+
+### Como atualizar o seu portfólio agora:
+Abra o terminal do seu VS Code e execute o comando agrupado abaixo para atualizar o repositório no GitHub de forma limpa:
+
+```bash
+git add README.md && git commit -m "Docs: README.md completamente estilizado em Markdown" && git push origin main --force
+
+```
+
 • Cursos profissionalizantes de alta performance
 • Suporte especializado na área acadêmica (orientação de estágios e TCC).
