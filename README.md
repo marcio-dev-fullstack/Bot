@@ -75,9 +75,9 @@ O M GRUPO atua com excelência e rigor técnico entregando soluções completas 
 
 ---
 
-## Instalação e Execução Local
+##Instalação e Execução Local
 
-### 1. Clonar o Repositório
+###1. Clonar o Repositório
 
 ```bash
 git clone [https://github.com/marcio-dev-fullstack/Bot.git](https://github.com/marcio-dev-fullstack/Bot.git)
@@ -85,7 +85,7 @@ cd Bot
 
 ```
 
-### 2. Configurar Dependências do Node.js
+###2. Configurar Dependências do Node.js
 
 ```bash
 npm install
