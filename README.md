@@ -34,9 +34,6 @@ Escolha as suas
 
 M GRUPO
 
-
----
-
 ---
 
 ##  Arquitetura Híbrida do Projeto
@@ -47,10 +44,21 @@ O sistema adota uma abordagem **Side-by-Side (Lado a Lado)** encapsulada em um �
 
 Em vez de fragmentar a infraestrutura em múltiplas instâncias, o container gerencia dois motores independentes que rodam de forma síncrona:
 
-| Motor / Runtime | Tecnologia | Responsabilidade Principal |
-| --- | --- | --- |
-| ** Engine Backend** | Python 3.11 / FastAPI | Exposição de endpoints REST, processamento de payloads, regras de negócio e gateway de dados. |
-| ** Engine de Automação** | Node.js v18 / WWebJS | Controle do ciclo de vida do cliente WhatsApp, escuta de eventos em tempo real e injeção de mensagens. |
+---
+
+###  ** Engine Backend (FastAPI)**
+
+* **Responsabilidade:** Exposição de endpoints REST, processamento de payloads, gerenciamento das regras de negócio e gateway de dados.
+* **Ambiente:** Python 3.11 Slim.
+
+---
+
+###  ** Engine de Automação (WWebJS)**
+
+* **Responsabilidade:** Controle do ciclo de vida do cliente WhatsApp, escuta ativa de eventos em tempo real e injeção automatizada de mensagens.
+* **Ambiente:** Node.js v18.
+
+---
 
 ```text
 ┌──────────────────────────────────────────────────────────┐
@@ -66,13 +74,12 @@ Em vez de fragmentar a infraestrutura em múltiplas instâncias, o container ger
 
 ```
 
-### Vantagens Estratégicas
+###  Vantagens Estratégicas
 
 * **Comunicação IPC Nativa:** Como os serviços coexistem na mesma rede virtualizada (`localhost`), a troca de dados entre a API e o Bot ocorre de forma instantânea.
 * **Orquestração Simplificada:** Um único blueprint de deploy simplifica o ciclo de vida da aplicação, reduzindo custos em plataformas PaaS (como o Render).
 * **Resiliência Isolada:** Monitoramento de saúde individualizado, garantindo que instabilidades em um motor não derrubem o barramento do outro.
 
----
 
 ```
 
