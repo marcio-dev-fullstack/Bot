@@ -75,7 +75,7 @@ O M GRUPO atua com excelência e rigor técnico entregando soluções completas 
 
 ---
 
-Instalação e Execução Local # ROBÔ ZAP — Inteligência Comercial & Automação 
+***Instalação e Execução Local***
 
 1. Clonar o Repositório
 
