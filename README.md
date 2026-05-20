@@ -55,10 +55,15 @@ garantindo o máximo aproveitamento dos recursos em nuvem:
 ```
 
 📌 Rotas de Monitoramento 
+
 📌 Gatilhos Comerciais Ativos
-📌 Painel Web de Controle                      
+
+📌 Painel Web de Controle      
+
 📌 Rotação de Mensagens Únicas
-📌 Endpoint de Sincronização                  
+
+📌 Endpoint de Sincronização    
+
 📌 Persistência de Sessão Segura
 
 ```
