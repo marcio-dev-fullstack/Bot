@@ -9,18 +9,6 @@ Conjunto de microsserviços corporativos que integra uma API de monitoramento em
 
 ---
 
-## Divisões de Atuação
-
-O ecossistema centraliza as operações comerciais e o portfólio técnico das seguintes marcas:
-
-* **KM Projetos & Engenharia:** Projetos arquitetônicos, engenharia estrutural e consultorias civis.
-* **RAZGO Tecnologia:** Desenvolvimento full-stack, marcas digitais e portfólios corporativos.
-* **MAZZ Cursos:** Treinamentos avançados de alta performance e capacitação profissional.
-* **MR Treinamentos:** Segurança do Trabalho e conformidade com as Normas Regulamentadoras (NRs).
-* **Área Acadêmica:** Mentoria especializada para estágios e desenvolvimento de TCC.
-
----
-
 ## Stack Tecnológica
 
 | Camada | Tecnologia | Função Principal |
