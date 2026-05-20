@@ -37,16 +37,20 @@ M GRUPO
 
 ---
 
+---
+
 ##  Arquitetura Híbrida do Projeto
 
-O sistema opera através de uma **arquitetura paralela de alta performance (Side-by-Side)** encapsulada em um único container Docker. Essa abordagem garante isolamento completo, latência zero na comunicação interna e aproveitamento máximo dos recursos computacionais em nuvem.
+O sistema adota uma abordagem **Side-by-Side (Lado a Lado)** encapsulada em um único container Docker. Esse ecossistema garante isolamento de processos, latência zero na comunicação interna e otimização máxima dos recursos computacionais em nuvem.
 
-### Funcionamento Concorrente (Lado a Lado)
+###  Funcionamento Concorrente
 
-Em vez de subir instâncias separadas, o container gerencia dois motores independentes que rodam de forma síncrona:
+Em vez de fragmentar a infraestrutura em múltiplas instâncias, o container gerencia dois motores independentes que rodam de forma síncrona:
 
-* ** Engine Backend (FastAPI):** Responsável por expor os endpoints REST, gerenciar as regras de negócio, processar payloads e servir de gateway de comunicação estável.
-* ** Engine de Automação (Node.js + WWebJS):** Responsável pela runtime do assistente, controle do ciclo de vida do cliente WhatsApp, escuta de eventos em tempo real e injeção de mensagens.
+| Motor / Runtime | Tecnologia | Responsabilidade Principal |
+| --- | --- | --- |
+| ** Engine Backend** | Python 3.11 / FastAPI | Exposição de endpoints REST, processamento de payloads, regras de negócio e gateway de dados. |
+| ** Engine de Automação** | Node.js v18 / WWebJS | Controle do ciclo de vida do cliente WhatsApp, escuta de eventos em tempo real e injeção de mensagens. |
 
 ```text
 ┌──────────────────────────────────────────────────────────┐
@@ -58,7 +62,17 @@ Em vez de subir instâncias separadas, o container gerencia dois motores indepen
 │  └───────────┬────────────┘    └──────────┬───────────┘  │
 └──────────────┼────────────────────────────┼──────────────┘
                ▼                            ▼
-       Endpoints REST                 Eventos Webhook
+         Endpoints REST               Eventos Webhook
+
+```
+
+### Vantagens Estratégicas
+
+* **Comunicação IPC Nativa:** Como os serviços coexistem na mesma rede virtualizada (`localhost`), a troca de dados entre a API e o Bot ocorre de forma instantânea.
+* **Orquestração Simplificada:** Um único blueprint de deploy simplifica o ciclo de vida da aplicação, reduzindo custos em plataformas PaaS (como o Render).
+* **Resiliência Isolada:** Monitoramento de saúde individualizado, garantindo que instabilidades em um motor não derrubem o barramento do outro.
+
+---
 
 ```
 
