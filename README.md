@@ -66,6 +66,8 @@ O M GRUPO atua com excelência e rigor técnico entregando soluções completas 
 • Cursos profissionalizantes de alta performance  
 • Suporte especializado na área acadêmica (orientação de estágios e TCC).
 
+---
+
 Instalação e Execução Local
 1. Clonar o Repositório:
 git clone [https://github.com/marcio-dev-fullstack/Bot.git](https://github.com/marcio-dev-fullstack/Bot.git)
@@ -84,10 +86,14 @@ Escaneie o QR Code gerado diretamente no terminal do seu VS Code para validar o 
 5. Executar a API Localmente:
 uvicorn main:app --reload
 
+---
+
 Produção e Deploy no Render
 O deploy é gerenciado de forma automatizada via Dockerfile. Graças ao filtro configurado no .gitignore, 
 os dados pesados de cache do navegador local são descartados, enviando para o servidor apenas o token 
 criptografado essencial de autenticação (.wwebjs_auth).
+
+---
 
 Dockerfile
 # O Dockerfile automatiza as seguintes etapas na nuvem:
@@ -98,6 +104,10 @@ Dockerfile
 5. Sincroniza a sessão autenticada localmente
 6. Inicializa os serviços concorrentes via Uvicorn & Node
 
+---
+
 Para monitorar a saúde do sistema na nuvem ou checar o status da aplicação, acesse o painel principal na URL de produção configurada no Render.
+
+---
 
 Desenvolvido e Gerenciado por Márcio Rodrigues de Oliveira Engenheiro Civil | Engenheiro de Software | Engenheiro de Segurança do Trabalho
