@@ -1,4 +1,5 @@
-# M GRUPO - Inteligência Comercial & Atendimento Automatizado
+```markdown
+# #️M GRUPO - Inteligência Comercial & Atendimento Automatizado
 
 ![Status do Deploy](https://img.shields.io/badge/Render-Live-brightgreen?style=for-the-badge&logo=render)
 ![Tecnologia](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
@@ -25,14 +26,37 @@ O **M GRUPO** atua com excelência e rigor técnico, entregando soluções compl
 
 O sistema opera através de uma arquitetura paralela e otimizada (Lado a Lado) embarcada em um container Docker, garantindo o máximo aproveitamento dos recursos em nuvem:
 
+
+```
+
+```
+              ┌────────────────────────────────────────┐
+              │          DOCKER CONTAINER (Render)     │
+              └────────────────────┬───────────────────┘
+                                   │
+            ┌──────────────────────┴──────────────────────┐
+            ▼                                             ▼
+ [ API Backend - Python ]                       [ Assistente Virtual ]
+        FastAPI                                    WhatsApp-Web.js
+
+```
+
+📌 Rotas de Monitoramento                      📌 Gatilhos Comerciais Ativos
+📌 Painel Web de Controle                      📌 Rotação de Mensagens Únicas
+📌 Endpoint de Sincronização                   📌 Persistência de Sessão Segura
+
+```
+
 ---
 
 ## Stack Tecnológica
 
-* **Backend & API:** Python 3.11 / FastAPI / Uvicorn
-* **Automação e Bot:** Node.js v18 / WhatsApp-Web.js / Puppeteer (Headless Chromium)
-* **Contenerização:** Docker (Debian Slim Environment)
-* **Deploy Cloud:** Render Web Services
+| Camada | Tecnologia | Descrição |
+| :--- | :--- | :--- |
+| **Backend & API** | Python 3.11 / FastAPI / Uvicorn | Serviço assíncrono de alta performance para monitoramento. |
+| **Automação & Bot** | Node.js v18 / WhatsApp-Web.js | Core do assistente virtual utilizando Puppeteer (Headless). |
+| **Contenerização** | Docker | Ambiente Debian Slim isolado e padronizado. |
+| **Deploy Cloud** | Render Web Services | Hospedagem em nuvem com integração contínua (CI/CD). |
 
 ---
 
@@ -43,7 +67,7 @@ O assistente virtual monitora as mensagens recebidas em tempo real. Sempre que p
 Isso humaniza o atendimento e blinda o número contra políticas de spam do WhatsApp.
 
 ### Gatilhos Rastreados:
-`vendas` | `venda` | `comprar` | `preço` | `preco` | `orçamento` | `orcamento` | `projeto` | `curso` | `treinamento` | `estágio` | `estagio` | `tcc` | `contratar` | `empresa` | `grupo`
+`vendas` | `venda` | `comprar` | `preço` | `preco` | `orçamento` | `orcamento` | `projeto` | `curso` | `treinamento` | `estágio` | `estagio` | `tcc` | `contratar` | `empresa` | `marcio` | `engenheria` | `civil` | `site` | `zap` | `whastapp`
 
 ### Estrutura de Resposta Padrão:
 Cada interação entrega uma introdução comercial personalizada e acopla automaticamente a central de links oficial do grupo no encerramento:
@@ -66,50 +90,83 @@ O M GRUPO atua com excelência e rigor técnico entregando soluções completas 
 • Cursos profissionalizantes de alta performance  
 • Suporte especializado na área acadêmica (orientação de estágios e TCC).
 
+```
+
 ---
 
-Instalação e Execução Local
-1. Clonar o Repositório:
+## Instalação e Execução Local
+
+### 1. Clonar o Repositório
+
+```bash
 git clone [https://github.com/marcio-dev-fullstack/Bot.git](https://github.com/marcio-dev-fullstack/Bot.git)
 cd Bot
 
-2. Configurar Dependências do Node.js:
+```
+
+### 2. Configurar Dependências do Node.js
+
+```bash
 npm install
 
-3. Configurar Dependências do Python:
+```
+
+### 3. Configurar Dependências do Python
+
+```bash
 pip install -r requirements.txt
 
-4. Executar o Assistente Localmente (Gerando Sessão):
-node bot.js
-Escaneie o QR Code gerado diretamente no terminal do seu VS Code para validar o acesso do aparelho corporativo.
+```
 
-5. Executar a API Localmente:
+### 4. Executar o Assistente Localmente (Gerando Sessão)
+
+```bash
+node bot.js
+
+```
+
+> *Escaneie o QR Code gerado diretamente no terminal do seu VS Code para validar o acesso do aparelho corporativo.*
+
+### 5. Executar a API Localmente
+
+```bash
 uvicorn main:app --reload
 
----
-
-Produção e Deploy no Render
-O deploy é gerenciado de forma automatizada via Dockerfile. Graças ao filtro configurado no .gitignore, 
-os dados pesados de cache do navegador local são descartados, enviando para o servidor apenas o token 
-criptografado essencial de autenticação (.wwebjs_auth).
+```
 
 ---
 
-Dockerfile
-# O Dockerfile automatiza as seguintes etapas na nuvem:
-1. Provisiona ambiente Python 3.11 Slim
-2. Instala dependências de sistema do Chromium moderno (Debian Trixie)
-3. Injeta a runtime do Node.js v18 de forma isolada
-4. Instala os pacotes de NPM e Python PIP
-5. Sincroniza a sessão autenticada localmente
-6. Inicializa os serviços concorrentes via Uvicorn & Node
+## Produção e Deploy no Render
+
+O deploy é gerenciado de forma automatizada via Dockerfile. Graças ao filtro configurado no `.gitignore`, os dados pesados de cache do navegador local são descartados, enviando para o servidor apenas o token criptografado essencial de autenticação (`.wwebjs_auth`).
+
+### Automação do Dockerfile
+
+O blueprint de build executa as seguintes etapas sequenciais na nuvem:
+
+1. Provisiona ambiente oficial `Python 3.11 Slim`.
+2. Injeta dependências estáveis do Chromium moderno (`Debian Trixie`).
+3. Instala a runtime do `Node.js v18` de forma isolada.
+4. Instala os pacotes de dependências via `NPM` e Python `PIP`.
+5. Sincroniza o token de sessão local estável.
+6. Inicializa os serviços concorrentes rodando o FastAPI e o Bot lado a lado.
+
+> *Para monitorar a saúde do sistema na nuvem ou checar o status da aplicação, acesse o painel principal na URL de produção configurada no Render.*
 
 ---
 
-Para monitorar a saúde do sistema na nuvem ou checar o status da aplicação, acesse o painel principal na
-URL de produção configurada no Render.
+## Créditos e Desenvolvimento
+
+**Desenvolvido e Gerenciado por Márcio Rodrigues de Oliveira** *Engenheiro de Software | Engenheiro Civil | Engenheiro de Segurança do Trabalho*
+
+```
 
 ---
 
-Desenvolvido e Gerenciado por Márcio Rodrigues de Oliveira
-Engenheiro Civil | Engenheiro de Software | Engenheiro de Segurança do Trabalho
+### Como atualizar o seu portfólio agora:
+Abra o terminal do seu VS Code e execute o comando agrupado abaixo para atualizar o repositório no GitHub de forma limpa:
+
+```bash
+git add README.md && git commit -m "Docs: README.md completamente estilizado em Markdown" && git push origin main --force
+
+```
