@@ -1,4 +1,4 @@
-```markdown
+
 <div align="center">
 
 ![Status do Deploy](https://img.shields.io/badge/Render-Live-brightgreen?style=for-the-badge&logo=render)
