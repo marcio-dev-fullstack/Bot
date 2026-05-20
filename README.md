@@ -75,7 +75,6 @@ O sistema opera através de uma arquitetura paralela e otimizada (Lado a Lado) e
 
 ```
 
----
 O M GRUPO atua com excelência e rigor técnico entregando soluções completas nas áreas de:
 • Engenharias
 • Desenvolvimento de tecnologias inovadoras
