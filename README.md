@@ -106,8 +106,10 @@ Dockerfile
 
 ---
 
-Para monitorar a saúde do sistema na nuvem ou checar o status da aplicação, acesse o painel principal na URL de produção configurada no Render.
+Para monitorar a saúde do sistema na nuvem ou checar o status da aplicação, acesse o painel principal na
+URL de produção configurada no Render.
 
 ---
 
-Desenvolvido e Gerenciado por Márcio Rodrigues de Oliveira Engenheiro Civil | Engenheiro de Software | Engenheiro de Segurança do Trabalho
+Desenvolvido e Gerenciado por Márcio Rodrigues de Oliveira
+Engenheiro Civil | Engenheiro de Software | Engenheiro de Segurança do Trabalho
