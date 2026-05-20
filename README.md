@@ -32,11 +32,6 @@ Escolha as suas
 [Mensagem Comercial Humanizada Sorteada]
 
 M GRUPO
-[http://mgrupo.online](http://mgrupo.online)
-[http://mgrupo.online/KM-Projetos/index.html](http://mgrupo.online/KM-Projetos/index.html)
-[http://mgrupo.online/MAZZ-Cursos/index.html](http://mgrupo.online/MAZZ-Cursos/index.html)
-[http://mgrupo.online/MR-Treinamentos/index.html](http://mgrupo.online/MR-Treinamentos/index.html)
-[http://mgrupo.online/RAZGO-Tecnologia/index.html](http://mgrupo.online/RAZGO-Tecnologia/index.html)
 
 ## Arquitetura Híbrida do Projeto
 
