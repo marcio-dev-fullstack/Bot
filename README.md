@@ -1,3 +1,8 @@
+![Status do Deploy](https://img.shields.io/badge/Render-Live-brightgreen?style=for-the-badge&logo=render)
+![Tecnologia](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![Ambiente](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Plataforma](https://img.shields.io/badge/WhatsApp_Web.js-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)
+
 # M GRUPO — Inteligência Comercial & Automação
 
 Conjunto de microsserviços corporativos que integra uma API de monitoramento em Python (FastAPI) a um assistente inteligente em Node.js (WhatsApp-Web.js) focado em conversão de leads, vendas e direcionamento estratégico de clientes.
