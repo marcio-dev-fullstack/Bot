@@ -59,4 +59,4 @@ M GRUPO
 [http://mgrupo.online/RAZGO-Tecnologia/index.html](http://mgrupo.online/RAZGO-Tecnologia/index.html)
 
 ---
-O M GRUPO atua com excelência e rigor técnico entregando soluções completas nas áreas de engenharias, </br> desenvolvimento de tecnologias inovadoras, cursos profissionalizantes de alta performance e suporte especializado na área acadêmica, incluindo </br> orientação de estágios e desenvolvimento de TCC.
+O M GRUPO atua com excelência e rigor técnico entregando soluções completas nas áreas de engenharias, <br> desenvolvimento de tecnologias inovadoras, cursos profissionalizantes de alta performance e suporte especializado na área acadêmica, incluindo orientação <br> de estágios e desenvolvimento de TCC.
