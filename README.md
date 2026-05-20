@@ -110,7 +110,7 @@ Siga os passos abaixo sequencialmente para rodar o ambiente de desenvolvimento:
 ### 1. Clonar o Repositório
 
 ```bash
-git clone [https://github.com/marcio-dev-fullstack/Bot.git](https://github.com/marcio-dev-fullstack/Bot.git)
+git clone https://github.com/marcio-dev-fullstack/Bot.git
 cd Bot
 
 ```
