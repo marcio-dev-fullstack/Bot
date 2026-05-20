@@ -50,6 +50,31 @@ M GRUPO
 [http://mgrupo.online/MR-Treinamentos/index.html](http://mgrupo.online/MR-Treinamentos/index.html)
 [http://mgrupo.online/RAZGO-Tecnologia/index.html](http://mgrupo.online/RAZGO-Tecnologia/index.html)
 
+## Arquitetura Híbrida do Projeto
+
+O sistema opera através de uma arquitetura paralela e otimizada (Lado a Lado) embarcada em um container Docker, garantindo o máximo aproveitamento dos recursos em nuvem:
+
+
+```
+
+```
+              ┌────────────────────────────────────────┐
+              │          DOCKER CONTAINER (Render)     │
+              └────────────────────┬───────────────────┘
+                                   │
+            ┌──────────────────────┴──────────────────────┐
+            ▼                                             ▼
+ [ API Backend - Python ]                       [ Assistente Virtual ]
+        FastAPI                                    WhatsApp-Web.js
+
+```
+
+📌 Rotas de Monitoramento                      📌 Gatilhos Comerciais Ativos
+📌 Painel Web de Controle                      📌 Rotação de Mensagens Únicas
+📌 Endpoint de Sincronização                   📌 Persistência de Sessão Segura
+
+```
+
 ---
 O M GRUPO atua com excelência e rigor técnico entregando soluções completas nas áreas de:
 • Engenharias
