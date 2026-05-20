@@ -75,9 +75,9 @@ O M GRUPO atua com excelência e rigor técnico entregando soluções completas 
 
 ---
 
-##Instalação e Execução Local
+Instalação e Execução Local
 
-###1. Clonar o Repositório
+1. Clonar o Repositório
 
 ```bash
 git clone [https://github.com/marcio-dev-fullstack/Bot.git](https://github.com/marcio-dev-fullstack/Bot.git)
@@ -85,21 +85,21 @@ cd Bot
 
 ```
 
-###2. Configurar Dependências do Node.js
+2. Configurar Dependências do Node.js
 
 ```bash
 npm install
 
 ```
 
-### 3. Configurar Dependências do Python
+3. Configurar Dependências do Python
 
 ```bash
 pip install -r requirements.txt
 
 ```
 
-### 4. Executar o Assistente Localmente (Gerando Sessão)
+4. Executar o Assistente Localmente (Gerando Sessão)
 
 ```bash
 node bot.js
@@ -108,18 +108,18 @@ node bot.js
 
 > *Escaneie o QR Code gerado diretamente no terminal do seu VS Code para validar o acesso do aparelho corporativo.*
 
-### 5. Executar a API Localmente
+5. Executar a API Localmente
 
 ```bash
 uvicorn main:app --reload
 
 ```
 
-## Produção e Deploy no Render
+Produção e Deploy no Render
 
 O deploy é gerenciado de forma automatizada via Dockerfile. Graças ao filtro configurado no `.gitignore`, os dados pesados de cache do navegador local são descartados, enviando para o servidor apenas o token criptografado essencial de autenticação (`.wwebjs_auth`).
 
-### Automação do Dockerfile
+Automação do Dockerfile
 
 O blueprint de build executa as seguintes etapas sequenciais na nuvem:
 
@@ -134,7 +134,7 @@ O blueprint de build executa as seguintes etapas sequenciais na nuvem:
 
 ---
 
-## Créditos e Desenvolvimento
+Créditos e Desenvolvimento
 
 **Desenvolvido e Gerenciado por Márcio Rodrigues de Oliveira** 
 
