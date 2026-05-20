@@ -9,19 +9,19 @@ Conjunto de microsserviços corporativos que integra uma API de monitoramento em
 
 ---
 
-## 🏢 Divisões de Atuação
+## Divisões de Atuação
 
 O ecossistema centraliza as operações comerciais e o portfólio técnico das seguintes marcas:
 
-* **📐 KM Projetos & Engenharia:** Projetos arquitetônicos, engenharia estrutural e consultorias civis.
-* **💻 RAZGO Tecnologia:** Desenvolvimento full-stack, marcas digitais e portfólios corporativos.
-* **📚 MAZZ Cursos:** Treinamentos avançados de alta performance e capacitação profissional.
-* **🛡️ MR Treinamentos:** Segurança do Trabalho e conformidade com as Normas Regulamentadoras (NRs).
-* **🎓 Área Acadêmica:** Mentoria especializada para estágios e desenvolvimento de TCC.
+* **KM Projetos & Engenharia:** Projetos arquitetônicos, engenharia estrutural e consultorias civis.
+* **RAZGO Tecnologia:** Desenvolvimento full-stack, marcas digitais e portfólios corporativos.
+* **MAZZ Cursos:** Treinamentos avançados de alta performance e capacitação profissional.
+* **MR Treinamentos:** Segurança do Trabalho e conformidade com as Normas Regulamentadoras (NRs).
+* **Área Acadêmica:** Mentoria especializada para estágios e desenvolvimento de TCC.
 
 ---
 
-## 🛠️ Stack Tecnológica
+## Stack Tecnológica
 
 | Camada | Tecnologia | Função Principal |
 | :--- | :--- | :--- |
@@ -32,14 +32,14 @@ O ecossistema centraliza as operações comerciais e o portfólio técnico das s
 
 ---
 
-## 🧠 Lógica de Atendimento (Anti-Spam)
+## Lógica de Atendimento (Anti-Spam)
 
 O assistente virtual monitora as mensagens recebidas e, ao detectar um gatilho válido, realiza um sorteio algorítmico entre **10 variações de textos comerciais em primeira pessoa ("Eu")**. Essa abordagem humaniza o fluxo e previne bloqueios na plataforma.
 
-### 🎯 Palavras-Chave Rastreadas
-`vendas` | `venda` | `comprar` | `preço` | `preco` | `orçamento` | `orcamento` | `projeto` | `curso` | `treinamento` | `estágio` | `estagio` | `tcc` | `contratar` | `empresa` | `grupo`
+### Palavras-Chave Rastreadas
+Escolha as suas
 
-### 📝 Formato de Saída (WhatsApp)
+### Formato de Saída (WhatsApp)
 ```text
 [Mensagem Comercial Humanizada Sorteada]
 
@@ -122,8 +122,6 @@ uvicorn main:app --reload
 
 ```
 
----
-
 ## Produção e Deploy no Render
 
 O deploy é gerenciado de forma automatizada via Dockerfile. Graças ao filtro configurado no `.gitignore`, os dados pesados de cache do navegador local são descartados, enviando para o servidor apenas o token criptografado essencial de autenticação (`.wwebjs_auth`).
@@ -143,13 +141,11 @@ O blueprint de build executa as seguintes etapas sequenciais na nuvem:
 
 ---
 
-## 👨‍💻 Créditos e Desenvolvimento
+## Créditos e Desenvolvimento
 
 **Desenvolvido e Gerenciado por Márcio Rodrigues de Oliveira** *Engenheiro de Software | Engenheiro Civil | Engenheiro de Segurança do Trabalho*
 
 ```
-
----
 
 ### Como atualizar o seu portfólio agora:
 Abra o terminal do seu VS Code e execute o comando agrupado abaixo para atualizar o repositório no GitHub de forma limpa:
