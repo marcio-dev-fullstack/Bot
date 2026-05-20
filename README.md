@@ -68,69 +68,85 @@ garantindo o máximo aproveitamento dos recursos em nuvem:
 
 ```
 
-O M GRUPO atua com excelência e rigor técnico entregando soluções completas nas áreas de:
-• Engenharias
-• Educação
-• Desenvolvimento de tecnologias inovadoras
+Aqui está uma versão do seu README totalmente reformulada, Márcio. Ajustei a formatação para torná-lo muito mais **escaneável, profissional e direto ao ponto**, utilizando caixas de destaque para os comandos e organizando as etapas do Docker de forma visualmente limpa:
 
 ---
 
-***Instalação e Execução Local***
+# M GRUPO
 
-1. Clonar o Repositório
+O **M GRUPO** atua com excelência e rigor técnico entregando soluções completas nas áreas de:
+
+* ** Engenharias**
+* ** Educação**
+* ** Desenvolvimento de Tecnologias Inovadoras**
+
+---
+
+## Instalação e Execução Local
+
+Siga os passos abaixo sequencialmente para rodar o ambiente de desenvolvimento:
+
+### 1. Clonar o Repositório
 
 ```bash
-git clone [https://github.com/marcio-dev-fullstack/Bot.git](https://github.com/marcio-dev-fullstack/Bot.git)
+git clone https://github.com/marcio-dev-fullstack/Bot.git
 cd Bot
 
 ```
 
-2. Configurar Dependências do Node.js
+### 2. Configurar os Ambientes e Dependências
+
+Instale os pacotes necessários tanto para a runtime do Node.js quanto para o ecossistema Python:
 
 ```bash
+# Instala dependências do ecossistema JavaScript
 npm install
 
-```
-
-3. Configurar Dependências do Python
-
-```bash
+# Instala dependências do ecossistema Python
 pip install -r requirements.txt
 
 ```
 
-4. Executar o Assistente Localmente (Gerando Sessão)
+### 3. Inicialização dos Serviços
 
+Abra dois terminais no seu VS Code para rodar os serviços concorrentes:
+
+* **Terminal 1 (Assistente WhatsApp):**
 ```bash
 node bot.js
 
 ```
 
-> *Escaneie o QR Code gerado diretamente no terminal do seu VS Code para validar o acesso do aparelho corporativo.*
 
-5. Executar a API Localmente
+>  **Nota:** Escaneie o QR Code gerado diretamente no terminal para autenticar o aparelho corporativo.
 
+
+* **Terminal 2 (API Backend):**
 ```bash
 uvicorn main:app --reload
 
 ```
 
-Produção e Deploy no Render
 
-O deploy é gerenciado de forma automatizada via Dockerfile. Graças ao filtro configurado no `.gitignore`, os dados pesados de cache do navegador local são descartados, enviando para o servidor apenas o token criptografado essencial de autenticação (`.wwebjs_auth`).
 
-Automação do Dockerfile
+---
 
-O blueprint de build executa as seguintes etapas sequenciais na nuvem:
+##  Produção e Deploy no Render
 
-1. Provisiona ambiente oficial `Python 3.11 Slim`.
-2. Injeta dependências estáveis do Chromium moderno (`Debian Trixie`).
-3. Instala a runtime do `Node.js v18` de forma isolada.
-4. Instala os pacotes de dependências via `NPM` e Python `PIP`.
-5. Sincroniza o token de sessão local estável.
-6. Inicializa os serviços concorrentes rodando o FastAPI e o Bot lado a lado.
+O deploy na nuvem é gerenciado de forma 100% automatizada via **Dockerfile**.
 
-> *Para monitorar a saúde do sistema na nuvem ou checar o status da aplicação, acesse o painel principal na URL de produção configurada no Render.*
+>  **Otimização de Segurança:** Graças aos filtros configurados no `.gitignore`, os dados pesados de cache do navegador local são totalmente descartados. O deploy envia para o servidor apenas o token criptografado essencial de autenticação (`.wwebjs_auth`), preservando a sessão ativa.
+
+###  Fluxo de Automação do Dockerfile
+
+O blueprint de build executa as seguintes etapas sequenciais na nuvem durante o deploy:
+
+1. **Base OS:** Provisiona o ambiente oficial isolado `Python 3.11 Slim`.
+2. **Browsers:** Injeta as dependências estáveis e bibliotecas do Chromium moderno (`Debian Trixie`).
+3. **Runtimes:** Instala a runtime do `Node.js v18` de forma independente.
+4. **Packages:** Instala e sincroniza os pacotes via `NPM` e Python `PIP`.
+5. **Auth:** Importa o token da sessão local estável para evitar novas leituras de QR Code.
+6. **Engine:** Inicializa os serviços concorrentes, rodando a API FastAPI e o Bot lado a lado.
 
 ---
 
