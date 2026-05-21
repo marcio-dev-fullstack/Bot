@@ -49,4 +49,4 @@ COPY . .
 EXPOSE 10000
 
 # Comando para rodar a API em Python e o Bot em Node.js juntos em segundo plano
-CMD node bot.js & uvicorn main:app --host 0.0.0.0 --port 10000
+CMD uvicorn main:app --host 0.0.0.0 --port 10000 & sleep 15 && node bot.js
