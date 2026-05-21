@@ -29,14 +29,29 @@ const client = new Client({
     }
 });
 
-// Evento para gerar o QR Code no terminal do VS Code
+// Controle de expiração do QR Code para evitar travamento na nuvem
+let qrTimeout;
+
 client.on('qr', qr => {
+    // Desenha o QR Code no terminal do Render caso queira acompanhar por lá
     qrcode.generate(qr, { small: true });
+    
+    // Salva o token atual para o FastAPI ler e exibir na página /qr
     fs.writeFileSync('qrcode_atual.txt', qr);
-    console.log('-> QR Code gerado com sucesso! Pronto para ser escaneado.');
+    console.log(`[${new Date().toLocaleTimeString()}] -> QR Code atualizado no servidor. Aguardando scan...`);
+
+    // 🔥 Monitoramento ativo: se o código expirar em 30 segundos, limpa o token antigo para forçar renovação
+    clearTimeout(qrTimeout);
+    qrTimeout = setTimeout(() => {
+        if (fs.existsSync('qrcode_atual.txt')) {
+            fs.unlinkSync('qrcode_atual.txt');
+            console.log('-> Código antigo expirado no servidor. Preparando nova requisição...');
+        }
+    }, 30000); 
 });
 
 client.on('ready', () => {
+    clearTimeout(qrTimeout);
     console.log('\n====================================');
     console.log('       BOT M GRUPO ONLINE           ');
     console.log('====================================\n');
@@ -79,7 +94,7 @@ const listaVendasBase = [
 
 const listaVendasUnica = listaVendasBase.map(f => `${f}${rodapeGrupo}`);
 
-// Mapeamento de gatilhos de palavras-chave
+// Mapeamento de gatilhos de palavras-chave comerciais do M GRUPO
 const mapeamentoGatilhos = [
     { 
         gatilhos: ["vendas", "venda", "comprar", "preço", "preco", "orçamento", "orcamento", "projeto", "curso", "treinamento", "estágio", "estagio", "tcc", "contratar", "empresa", "grupo"], 
@@ -87,7 +102,7 @@ const mapeamentoGatilhos = [
     }
 ];
 
-// Monitoramento de mensagens em tempo real
+// Monitoramento e resposta de mensagens recebidas em tempo real
 client.on('message', async msg => {
     console.log(`[Nova Mensagem] De: ${msg.from} -> Texto: "${msg.body}"`);
     
