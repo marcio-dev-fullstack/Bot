@@ -2,11 +2,11 @@ const qrcode = require('qrcode-terminal');
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const fs = require('fs');
 
-// Configuração robusta e inteligente: abre o navegador no seu PC e roda oculto e leve no Render
+// Configuração inteligente: visual no Windows; oculta e com consumo de RAM ultra-reduzido no Linux (Render)
 const client = new Client({
     authStrategy: new LocalAuth(),
     puppeteer: {
-        headless: process.platform === 'win32' ? false : true, // Abre a janela no Windows; roda em background no Linux
+        headless: process.platform === 'win32' ? false : true, // Abre janela no PC; roda em background no Render
         args: [
             '--no-sandbox',
             '--disable-setuid-sandbox',
@@ -15,37 +15,42 @@ const client = new Client({
             '--no-zygote',
             '--single-process',
             '--disable-gpu',
-            // 🔥 ARGUMENTOS CRÍTICOS PARA REDUZIR CONSUMO DE MEMÓRIA NO RENDER (ANTI-ERRO 137)
+            // 🔥 REMOÇÃO EXTREMA DE RECURSOS PARA CONTER CONSUMO DE RAM (ANTI-ERRO OUT OF MEMORY)
             '--disable-extensions',
             '--no-default-browser-check',
             '--disable-default-apps',
             '--metrics-recording-only',
-            '--force-device-scale-factor=1',
-            '--disable-background-networking',
             '--password-store=basic',
-            '--use-gl=swiftshader'
+            '--use-gl=swiftshader',
+            '--js-flags="--max-old-space-size=150"', // Força o coletor de lixo do JavaScript a manter o consumo baixo
+            '--disable-blink-features=AutomationControlled',
+            '--disable-audio-output',             // Corta decodificadores de áudio da memória
+            '--disable-canvas-aa',                 // Desativa anti-aliasing de imagens
+            '--disable-2d-canvas-clip-optimization',
+            '--disable-gl-drawing-for-tests',
+            '--disable-local-storage'
         ],
         executablePath: process.platform === 'win32' ? undefined : '/usr/bin/chromium'
     }
 });
 
-// Controle de expiração do QR Code para evitar travamento na nuvem
+// Controle ativo de expiração do QR Code para evitar travamento em background
 let qrTimeout;
 
 client.on('qr', qr => {
-    // Desenha o QR Code no terminal do Render caso queira acompanhar por lá
+    // Desenha o QR Code em blocos de texto no terminal do Render para controle interno
     qrcode.generate(qr, { small: true });
     
-    // Salva o token atual para o FastAPI ler e exibir na página /qr
+    // Escreve o token puro no arquivo para o main.py ler e renderizar via JS na página /qr
     fs.writeFileSync('qrcode_atual.txt', qr);
     console.log(`[${new Date().toLocaleTimeString()}] -> QR Code atualizado no servidor. Aguardando scan...`);
 
-    // 🔥 Monitoramento ativo: se o código expirar em 30 segundos, limpa o token antigo para forçar renovação
+    // Monitoramento do ciclo de vida do código: se expirar em 30s sem scan, limpa o arquivo para renovar
     clearTimeout(qrTimeout);
     qrTimeout = setTimeout(() => {
         if (fs.existsSync('qrcode_atual.txt')) {
             fs.unlinkSync('qrcode_atual.txt');
-            console.log('-> Código antigo expirado no servidor. Preparando nova requisição...');
+            console.log('-> Código antigo expirado no servidor. Preparando renovação estável...');
         }
     }, 30000); 
 });
@@ -60,7 +65,7 @@ client.on('ready', () => {
     }
 });
 
-// Rodapé oficial unificado com todos os links das suas marcas e empresas
+// Rodapé unificado com a identidade das marcas e canais oficiais do conglomerado
 const rodapeGrupo = `
 
 M GRUPO
@@ -78,7 +83,7 @@ http://mgrupo.online/RAZGO-Tecnologia/index.html
 ---
 O M GRUPO atua com excelência e rigor técnico entregando soluções completas nas áreas de:\n\n• Engenharias\n• Desenvolvimento de tecnologias inovadoras\n• Cursos profissionalizantes de alta performance\n• Suporte especializado na área acadêmica (orientação de estágios e TCC).`;
 
-// Banco de dados com as 10 variações de mensagens comerciais únicas (Anti-Spam)
+// Banco de dados estratégico contendo as 10 variações textuais únicas (Foco comercial e Anti-Spam)
 const listaVendasBase = [
     "Olá! Seja muito bem-vindo ao nosso canal de atendimento. Eu lidero o desenvolvimento de soluções robustas para o mercado, integrando serviços de alto nível e conectando você direto com as nossas plataformas especializadas. Se você busca fechar negócios ou contratar projetos de qualidade, está no lugar certo. Conheça o ecossistema que criei para transformar suas ideias em resultados:",
     "Se você está procurando serviços comerciais, suporte especializado ou quer fechar uma parceria de negócios, eu garanto as melhores soluções do mercado. Nós unimos técnica, inovação e compromisso para entregar o que há de mais moderno em infraestrutura e inovação digital. Acesse os canais oficiais do nosso conglomerado abaixo para conhecer nosso portfólio completo:",
@@ -89,12 +94,12 @@ const listaVendasBase = [
     "Olá! Eu trabalho com foco total na entrega de soluções inovadoras, garantindo a solidez que o seu negócio ou projeto precisa para crescer com segurança. Nossa presença no mercado é sustentada pela versatilidade e capacitação constante do nosso time técnico. Conheça e explore as frentes de atuação de nossa estrutura empresarial:",
     "Se você procura fechar contratos com quem entende do assunto, eu coloco nossa experiência à sua disposição para solucionar as demandas mais exigentes do setor. Nossa carteira de serviços cobre as principais necessidades técnicas e de capacitação corporativa atuais. Conecte-se com as plataformas oficiais que desenvolvemos:",
     "Seja bem-vindo! Eu tenho o compromisso de trazer soluções comerciais de ponta e projetos estratégicos que fazem a diferença na prática. Seja para suporte corporativo, consultoria especializada ou desenvolvimento de produtos, nossa estrutura centraliza o atendimento nos links abaixo para facilitar o seu acesso:",
-    "Olá! Se o assunto é fechar negócios de sucesso, eu garanto o suporte comercial e a entrega técnica que você procura. Nossas divisões cobrem os principais pilares de desenvolvimento mercadológico e capacitação profissional da nossa região. Participe, conheça e faça orçamentos diretamente através do nosso radar de links:"
+    "Olá! Se o assunto é fechar negócios de sucesso, eu garanto o suporte comercial e a entrega técnica que você procura. Naccas divisões cobrem os principais pilares de desenvolvimento mercadológico e capacitação profissional da nossa região. Participe, conheça e faça orçamentos diretamente através do nosso radar de links:"
 ];
 
 const listaVendasUnica = listaVendasBase.map(f => `${f}${rodapeGrupo}`);
 
-// Mapeamento de gatilhos de palavras-chave comerciais do M GRUPO
+// Mapeamento completo de gatilhos corporativos
 const mapeamentoGatilhos = [
     { 
         gatilhos: ["vendas", "venda", "comprar", "preço", "preco", "orçamento", "orcamento", "projeto", "curso", "treinamento", "estágio", "estagio", "tcc", "contratar", "empresa", "grupo"], 
@@ -102,7 +107,7 @@ const mapeamentoGatilhos = [
     }
 ];
 
-// Monitoramento e resposta de mensagens recebidas em tempo real
+// Captura e processamento de mensagens em tempo real
 client.on('message', async msg => {
     console.log(`[Nova Mensagem] De: ${msg.from} -> Texto: "${msg.body}"`);
     
